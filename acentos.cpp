@@ -1,3 +1,11 @@
+/***********************************************
+
+                IVAN DARIO PIERNAGORDA PEÑA
+
+               GRUPO DE FÍSICA E INFORÁTICA
+                          FISINFOR
+
+***********************************************/
 #include<c++/8/iostream>
 #include<c++/8/string>
 #include<c++/8/fstream>
@@ -23,9 +31,15 @@ public:
   //Find intonation vocal
 
   void find_pos(string);   //Busca las posiciones del parametro string
+
+  //Get
+
+  size_t get_number(string); //Da el número de veces que esta una vocal con tilde presente en un texto
+
+  
 };
 
-string Acentos::vocal="áéíóú";
+string Acentos::vocal="áéíóú";  //Variable global dentro de la clase Acentos
 
 Acentos::Acentos(){}
 Acentos::Acentos(string Text){text=Text;}
@@ -71,6 +85,17 @@ void Acentos::find_pos(string voc){
     k=6;
   else if(voc=="ú")
     k=8;
+
+  /*Para las vocales en May y Min.
+    1) substr(0,2) 
+    2) substr(2,2)
+    3) substr(4,2)
+    4) substr(6,2)
+    .
+    .
+    .
+    n) substr(2*n,cualquier numero>1)
+  */
   
   for(size_t i=0;i<load_file().size();i++){
     POS=load_file().find(vocal.substr(k,2),i);
@@ -83,23 +108,42 @@ void Acentos::find_pos(string voc){
 
 }
 
+size_t Acentos::get_number(string voc){
+
+  int POS=0,TEMP=0,conteo=0;
+  int k;              //k define la posición de en la variable satatic "vocal"
+  if(voc=="á")
+    k=0;
+  else if(voc=="é")
+    k=2;
+  else if(voc=="í")
+    k=4;
+  else if(voc=="ó")
+    k=6;
+  else if(voc=="ú")
+    k=8;
+
+  for(size_t i=0;i<load_file().size();i++){
+    POS=load_file().find(vocal.substr(k,2),i);
+       if(POS<0){break;}
+       if(TEMP!=POS)
+	 conteo++;
+       TEMP=POS;
+  }
+  return conteo;
+}
+
 int main(){
-  Acentos a("Lá ré Putá que te pário");
+  //Acentos a("Lá ré Putá que te pário");
+  Acentos a;
+  a.text_file("prueba.txt");
   string texto;
   texto = a.load_file();
-  a.find_pos("é");
+  a.find_pos("á");
+  cout << a.get_number("á") << endl;;
   string vocal("áéíóú");
-  int conteo,h,j,k=0,TEMP=0;
-  conteo=0;
-     h=0;
-     j=0;
-     for(int i=0;i<texto.size();i++){ //segundo for
-       if(j!=h){
-         conteo++;
-         j=h;
-       }
-      
-     }
+
+  
   
   /*Para las vocales en May y Min.
     1) substr(0,2) 
