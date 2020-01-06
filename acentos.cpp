@@ -39,7 +39,7 @@ public:
   size_t get_number(string); //Da el número de veces que esta una vocal con tilde presente en un texto
 
   vector< vector<size_t> > get_pos(); //Da la posición en un vector
-
+  vector <size_t> get_pos_x_v(string,string *); //Da la posición de una vocal
   string get_text_w(); //Da el texto sin tildes
 };
 
@@ -164,6 +164,56 @@ vector< vector<size_t> > Acentos::get_pos(){
 
 }
 
+vector<size_t> Acentos::get_pos_x_v(string voc,string *new_text){
+
+  /*Este metodo es igual al anterior, lo que cambia es que devuelve un vector de posición para una sola letra
+  1) El primer parametro es una vocal con tilde
+  2) El segundo parametro es un texto, para el caso tratado podria ser el metodo load_file() el cual devuelve un string*/
+
+  vector<size_t> POS_TEMP;   //Vector que contendra la posición de la vocal escogida en el parametro "voc"
+  int POS=0,TEMP=0,conteo=0;
+  for(size_t i=0;i<(*new_text).size();i++){
+    POS=(*new_text).find(voc,i);
+    if(POS<0){break;}
+    if(TEMP!=POS){
+      POS_TEMP.push_back(0);
+      POS_TEMP[conteo]=POS;
+      conteo++;
+    }
+    TEMP=POS;   
+  }
+  return POS_TEMP;  
+}
+
+  /*Existen varios problemas al cambiar la letra y son los siguientes
+   1) Si en el segundo for se empezara desde la primera posición del vector pos_v entonces el segundo elemento de este vector ya no corresponderia a la vocal buscada, esto debido a que se corren las casillas
+  ANTES DE SER BORRADA á
+  Holá qá                 Cadena de caracteres
+  ---- --                 CASILLAS
+  012(3,4)56(7,8)         Vector posición
+  DESPUES DE BORRADA
+  Hol qá
+  --- --
+  01234(5,6)
+  Como se puede ver la segunda á cambia de posición por lo que en la segunda iteración del bucle este borrara el elemento inicial (7,8) y no el (5,6), para solucionar esto el bucle se hace desde el ultimo elemento hasta el primero
+  2) Igual que en el caso anterio se observa el mismo problema en el cual se corren las casillas para las demas letras, por lo que en el metodo get_pos_x_v admite dos parametros el primero la vocal a buscar y el segundo el texto en el cual se va a buscar la vocal, es este caso la busqueda de la letra siguiente por ejemplo de á a é no se realiza sobre el texto original, sino sobre el texto nuevo, en el cual ya se borraro la vocal á */
+
+string Acentos::get_text_w(){
+
+  string vocal_w("aeiou");
+  string new_text=load_file(); //Se inicializa el texto en el cual se va a buscar la vocal con tilde
+  vector<size_t> pos_v; //Este guardara las posiciones por cada vocal
+  
+  for(size_t i=0;i<=8;i+=2){
+    pos_v=get_pos_x_v(vocal.substr(i,2),&new_text); 
+    
+    for(size_t j=pos_v.size();j>0;j--){
+      new_text.replace(pos_v[j-1],2,vocal_w.substr(i/2,1));
+    }
+    pos_v.resize(0);
+  }
+  return new_text;
+}
 
 
 
@@ -174,15 +224,19 @@ int main(){
   string texto;
   texto = a.load_file();
   a.find_pos("á");
-  cout << a.get_number("á") << endl;;
+  cout << a.get_number("é") << endl;;
   vector< vector<size_t> > s = a.get_pos();
-  /*
-  for(int i=0;i<s.size();i++){
-    for(int j=0;j<s[i].size();j++)
-      cout << s[i][j] << endl;
-    cout << "-------------------\n";
-    }*/
+  string new_texto = a.get_text_w();
+  //vector<size_t> ss= a.get_pos_x_v("ú");
+  cout << texto << endl << "--------\n" << new_texto << endl;
+
   
+  /*
+  for(int i=0;i<ss.size();i++){
+    cout << ss[i] << endl;
+    //cout << "-------------------\n";
+    }
+  */
 
   
   
