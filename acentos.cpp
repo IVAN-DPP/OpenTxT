@@ -218,42 +218,20 @@ string Acentos::get_text_w(){
 
 
 int main(){
-  //Acentos a("Lá ré Putá que te pário");
-  Acentos a;
-  a.text_file("prueba.txt");
+  Acentos a("Lá ré Putá que te pário");
+  //Acentos a;
+  //a.text_file("prueba.txt");
   string texto;
   texto = a.load_file();
   a.find_pos("á");
   cout << a.get_number("é") << endl;;
   vector< vector<size_t> > s = a.get_pos();
   string new_texto = a.get_text_w();
-  //vector<size_t> ss= a.get_pos_x_v("ú");
+  
   cout << texto << endl << "--------\n" << new_texto << endl;
 
   
-  /*
-  for(int i=0;i<ss.size();i++){
-    cout << ss[i] << endl;
-    //cout << "-------------------\n";
-    }
-  */
-
   
-  
-  //vector<size_t> s=a.get_pos("á");
-
-  
-  
-  /*Para las vocales en May y Min.
-    1) substr(0,2) 
-    2) substr(2,2)
-    3) substr(4,2)
-    4) substr(6,2)
-    .
-    .
-    .
-    n) substr(2*n,cualquier numero>1)
-  */
 
   return 0;
 }
