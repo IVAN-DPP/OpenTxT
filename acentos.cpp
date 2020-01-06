@@ -10,6 +10,7 @@
 #include<c++/8/string>
 #include<c++/8/fstream>
 #include<c++/8/vector>
+#include<c++/8/cctype>
 #include<stdlib.h>
 
 using namespace std;
@@ -41,6 +42,7 @@ public:
   vector< vector<size_t> > get_pos(); //Da la posición en un vector
   vector <size_t> get_pos_x_v(string,string *); //Da la posición de una vocal
   string get_text_w(); //Da el texto sin tildes
+  string get_text_m(string *); //Da el texto en miniscula
 };
 
 string Acentos::vocal="áéíóú";  //Variable global dentro de la clase Acentos
@@ -215,21 +217,32 @@ string Acentos::get_text_w(){
   return new_text;
 }
 
+/* Este metodo convierte las mayusculas a minusculas pasando el texto original a una cadena char para utilizar la función tolower y luego pasarla a una cadena string */
+string Acentos::get_text_m(string *text_w){
 
+  char textC[(*text_w).size()];
+  for(size_t i=0;i<(*text_w).size();i++)
+    textC[i]=tolower((*text_w).at(i));
+
+  (*text_w)=textC;
+
+  return *text_w;
+
+}
 
 int main(){
   Acentos a("Lá ré Putá que te pário");
   //Acentos a;
   //a.text_file("prueba.txt");
-  string texto;
-  texto = a.load_file();
-  a.find_pos("á");
-  cout << a.get_number("é") << endl;;
-  vector< vector<size_t> > s = a.get_pos();
-  string new_texto = a.get_text_w();
+  string text;
+  text = a.load_file();
+  string new_text = a.get_text_w();
   
-  cout << texto << endl << "--------\n" << new_texto << endl;
+  cout << text << endl << "--------\n" << new_text << endl;
 
+  a.get_text_m(&new_text);
+
+  cout << "\n------------------\n" << new_text << endl; 
   
   
 
