@@ -174,14 +174,21 @@ vector< vector<size_t> > Acentos::get_pos(){
 vector<size_t> Acentos::get_pos_x_v(string voc,string *new_text){
 
   /*Este metodo es igual al anterior, lo que cambia es que devuelve un vector de posición para una sola letra
-  1) El primer parametro es una vocal con tilde
+  1) El primer parametro es una vocal con tilde, (o puede ser cualquier letra).
   2) El segundo parametro es un texto, para el caso tratado podria ser el metodo load_file() el cual devuelve un string*/
 
   vector<size_t> POS_TEMP;   //Vector que contendra la posición de la vocal escogida en el parametro "voc"
   int POS=0,TEMP=0,conteo=0;
   for(size_t i=0;i<(*new_text).size();i++){
     POS=(*new_text).find(voc,i);
+    //cout << POS << endl;
     if(POS<0){break;}
+    /*Este condicional se coloco por si existiera la posibilidad que la letra a buscar este en la primera posición*/
+    if(i==0 && POS==TEMP){
+      POS_TEMP.push_back(0);
+      POS_TEMP[0]=0;
+      conteo++;
+    }
     if(TEMP!=POS){
       POS_TEMP.push_back(0);
       POS_TEMP[conteo]=POS;
