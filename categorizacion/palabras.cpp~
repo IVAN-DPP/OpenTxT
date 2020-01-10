@@ -1,0 +1,49 @@
+#include<c++/8/iostream>
+#include"/home/elchorco/Documents/c++/ProyPalabras/PALABRAS/texto/acentos.h"
+
+using namespace std;
+
+class Palabra{
+private:
+  string texto;
+public:
+
+  /*----- METHODS ---------*/
+  //Constructor
+  Palabra();
+  Palabra(string);    //Texto en minuscula y sin tildes
+  
+  //get
+
+  double get_num_l(); //Número de letras en una palabra
+  
+};
+
+Palabra::Palabra(){}
+Palabra::Palabra(string tex){texto=tex;}
+
+double Palabra::get_num_l(){
+
+  for(int i=0;texto[i]!=0;i++){
+  }
+  return 0;
+}
+
+int main(){
+
+    //Acentos a("Lá ré Putá que te pário");
+  Acentos a;
+  a.text_file("prb.txt");
+  string text;
+  text = a.load_file();
+  string new_text = a.get_text_w();
+  
+  cout << text << endl << "--------\n" << new_text << endl;
+
+  a.get_text_m(&new_text);
+
+  cout << "\n------------------\n" << new_text << endl; 
+
+
+  return 0;
+}

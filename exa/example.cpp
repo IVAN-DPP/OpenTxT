@@ -1,12 +1,13 @@
-#include "/home/...../texto/acentos.h" 
+#include "/home/elchorco/Documents/c++/ProyPalabras/PALABRAS/texto/acentos.h"
+//#include "/home/...../texto/acentos.h" 
 #include <iostream>
 
 using namespace std;
 
 int main(){
-  Acentos a("Lá ré Putá que te pário");
-  //Acentos a;
-  //a.text_file("prueba.txt");
+  //Acentos a("Lá ré Putá que te pário");
+  Acentos a;
+  a.text_file("prb.txt");
   string text;
   text = a.load_file();
   string new_text = a.get_text_w();
