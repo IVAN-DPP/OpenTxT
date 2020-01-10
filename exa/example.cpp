@@ -1,4 +1,4 @@
-#include "/......./texto/acentos.cpp" 
+#include "/home/...../texto/acentos.h" 
 #include <iostream>
 
 using namespace std;
