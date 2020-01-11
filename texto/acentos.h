@@ -45,7 +45,7 @@ public:
   vector< vector<size_t> > get_pos(); //Da la posición en un vector
   vector <size_t> get_pos_x_v(string,string *); //Da la posición de una vocal
   string get_text_w(); //Da el texto sin tildes
-  string get_text_m(string *); //Da el texto en miniscula
+  void get_text_m(string *); //Da el texto en miniscula
 };
 
 
@@ -188,7 +188,7 @@ vector<size_t> Acentos::get_pos_x_v(string voc,string *new_text){
       POS_TEMP.push_back(0);
       POS_TEMP[0]=0;
       conteo++;
-    }
+      }
     if(TEMP!=POS){
       POS_TEMP.push_back(0);
       POS_TEMP[conteo]=POS;
@@ -230,15 +230,17 @@ string Acentos::get_text_w(){
 }
 
 /* Este metodo convierte las mayusculas a minusculas pasando el texto original a una cadena char para utilizar la función tolower y luego pasarla a una cadena string */
-string Acentos::get_text_m(string *text_w){
+void Acentos::get_text_m(string *text_w){
 
   char textC[(*text_w).size()];
-  for(size_t i=0;i<(*text_w).size();i++)
+  for(size_t i=0;i<(*text_w).size();i++){
     textC[i]=tolower((*text_w).at(i));
+    
+  }
 
   (*text_w)=textC;
 
-  return *text_w;
+  
 
 }
 
