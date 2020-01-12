@@ -1,3 +1,11 @@
+/***********************************************
+
+                IVAN DARIO PIERNAGORDA PEÑA
+
+               GRUPO DE FÍSICA E INFORÁTICA
+                          FISINFOR
+
+***********************************************/
 #include "acentos.h"
 
 
