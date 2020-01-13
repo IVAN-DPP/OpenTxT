@@ -1,11 +1,8 @@
 /***********************************************
 
-                IVAN DARIO PIERNAGORDA PEÑA
+@autor: IVAN DARIO PIERNAGORDA PEÑA
 
-               GRUPO DE FÍSICA E INFORÁTICA
-                          FISINFOR
-
-***********************************************/
+************************************************/
 #include "acentos.h"
 
 
@@ -133,5 +130,19 @@ vector<size_t> Palabra::get_pos(){
 
 double Palabra::get_freq(vector<size_t> temp){return temp.size();}
 
+/*
+    palabras.h is part of OpenTxT.
 
+    OpenTxT is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
+    OpenTxT is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenTxT.  If not, see <https://www.gnu.org/licenses/>.
+*/
