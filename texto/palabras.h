@@ -19,13 +19,14 @@ public:
   //Load
 
   void load_text(string);
+  //set
 
+  void set_word(string);
   //get
 
   vector<string> get_words(vector<size_t>); //Devuelve palabras con la posición definida en el vector que esta como referencia
   virtual vector<size_t> get_pos(); //Devuelve un vector con la posición de la palabra
   double get_freq(vector<size_t>); //Devuelve las veces que se repite la palabra
-  
   
 };
 
@@ -34,6 +35,7 @@ Palabra::Palabra(string Word){word=Word;}
 
 void Palabra::load_text(string Text){text=Text;}
 
+void Palabra::set_word(string Word){word=Word;}
 /*Esta función nos devuelve un vector con palabras, la idea es que el vector que se recibe sea el vector con las posiciones de la palabra a buscar */
 vector<string> Palabra::get_words(vector<size_t> temp){
   vector<string> words(temp.size());

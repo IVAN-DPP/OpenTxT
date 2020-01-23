@@ -4,10 +4,9 @@
 
 ************************************************/
 
-#include "/home/...../texto/palabras.h"
+#include "palabras.h"
 int main(){
-
-  //Acentos a("Pá ré Putá quep te pário    ");
+  
   Acentos a;
   a.text_file("prb.txt");
   string text;
@@ -20,10 +19,11 @@ int main(){
 
   cout << "\n------------------\n" << new_text << endl; 
   Palabra r("texto");
+  
   r.load_text(new_text);
-  vector<size_t> position= r.get_pos();
+  vector<size_t> position= h[0].get_pos();
 
-  cout << "Las veces que se repite la palabra texto son: " << r.get_freq(position) << endl;
+  cout << "Las veces que se repite la palabra texto son: " << h[0].get_freq(position) << endl;
     
 
   return 0;

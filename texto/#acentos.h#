@@ -33,8 +33,7 @@ public:
   
   //Find intonation vocal
 
-  void find_pos(string);   //Busca las posiciones del parametro string
-
+  
   //Get
 
   size_t get_number(string); //Da el número de veces que esta una vocal con tilde presente en un texto
