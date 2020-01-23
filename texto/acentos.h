@@ -4,11 +4,11 @@
 
 ************************************************/
                
-#include<c++/8/iostream>
-#include<c++/8/string>
-#include<c++/8/fstream>
-#include<c++/8/vector>
-#include<c++/8/cctype>
+#include<iostream>
+#include<string>
+#include<fstream>
+#include<vector>
+#include<cctype>
 #include<stdlib.h>
 
 
