@@ -61,9 +61,6 @@ vector<string> Prueba::get_paragraph(){
       temp=i;                                    //Pone el inicio del siguiente parrafo
       list_of_paragraphs.push_back(paragraph);   //Guarda el parrafo en el vector "list_of_paragrapghs"
     }
-    else if(text[i]==';')                        //Si sen encuentra con ; es porque el texto ya termino
-      break;
-    
   }
   return list_of_paragraphs;
 }
@@ -74,28 +71,59 @@ vector< vector<string> > Prueba::get_word_matrix(){
   string word;
   int temp=0;                                                                 //Indica el indice con el cual empieza una palabra 
   for(int j=0;j<get_paragraph().size();j++){                                  //Este primer bucle retorna la matriz de vectores fila
-    for(int i=0;i<(get_paragraph()[j]).size();i++){                           //Este segundo bucle retorna un vector fila por cada parrafo
-      if(get_paragraph()[j][i]==' '){                                         //Se escoge una palabra
-	word=(get_paragraph()[j]).substr(temp,i-temp);                        //Guarda o asigna la palabra en word, empieza en temp y escoge (i-temp) elementos
-	temp=i+1;                                                             //Pone el inicio de la siguiente palabra
-	list_of_words.push_back(word);                                        //Guarda la palabra en el vector "list_of_words"
-      }
+    for(int i=0;i<(get_paragraph()[j]).size();i++){                             //Este segundo bucle retorna un vector fila por cada parrafo
 
-      else if(get_paragraph()[j][i]=='.' || get_paragraph()[j][i]==','){      //Si termina una palabra termina en punto o coma
-	word=(get_paragraph()[j]).substr(temp,i-temp);                       
+      /*-------------------------------------------- Sección de simbolos ----------------------------------------*/
+
+      if(get_paragraph()[j][i]=='.' || get_paragraph()[j][i]==',' ||
+	 get_paragraph()[j][i]==')' || get_paragraph()[j][i]=='!' ||
+	 get_paragraph()[j][i]=='?'){                                           //Si una palabra termina con punto, coma, sign interrogración, etc.
+	word=(get_paragraph()[j]).substr(temp,i-temp);                          //Guarda o asigna la palabra en word, empieza en temp y escoge (i-temp) elementos
+	temp=i+1;                                                               //Pone en temp el inicio de la siguiente palabra
+	list_of_words.push_back(word);                                          //Guarda la palabra en el vector "list_of_words"
+      }
+      else if(get_paragraph()[j][i-1]=='.' || get_paragraph()[j][i-1]==',' ||
+	      get_paragraph()[j][i-1]==')' || get_paragraph()[j][i-1]=='!' ||
+	      get_paragraph()[j][i-1]=='?')                                     //Para que no vuelva a guardar la palabra que acababa con punto, coma, etc.
+	temp++;                                                                 //Se le suma el siguiente para que no tome la palabra desde el espacio en blanco ' '
+
+
+      else if(get_paragraph()[j][i]=='(')                                       //Si una palabra empieza con parentesis
 	temp=i+1;                                                             
+
+      // El trato de las comillas es diferente debido a que no
+      // hay diferencia entre la que abre y cierra
+      
+      else if(get_paragraph()[j][i]=='"' && get_paragraph()[j][i-1]==' ')       
+	temp=i+1;
+      
+      else if(get_paragraph()[j][i]=='"' && get_paragraph()[j][i+1]==' '){
+	word=(get_paragraph()[j]).substr(temp,i-temp);                          //Guarda o asigna la palabra en word, empieza en temp y escoge (i-temp) elementos
+	temp=i+1;                                                               //Pone en temp el inicio de la siguiente palabra
 	list_of_words.push_back(word);
       }
-      else if(get_paragraph()[j][i-1]=='.' || get_paragraph()[j][i-1]==',')  //Para que no vuelva a guardar la palabra que acababa con punto o coma
-	continue;
+
+      else if(get_paragraph()[j][i-1]=='"' && get_paragraph()[j][i]==' ')
+	temp++;
+	
+      else if(get_paragraph()[j].substr(i,2)=="¡" || get_paragraph()[j].substr(i,2)=="¿") //En este caso los caracteres valen por dos
+	temp=i+2;
+       
+      /*------------------------------- FIN Sección de simbolos -------------------------------------------*/
       
+      else if(get_paragraph()[j][i]==' '){                                    //Se escoge una palabra que no termine con punto y coma
+	word=(get_paragraph()[j]).substr(temp,i-temp);                        
+	temp=i+1;                                                             
+	list_of_words.push_back(word);                                        
+      }
+     
       else if(get_paragraph()[j][i]=='.' && get_paragraph()[j][i+1]=='\n'){  //Si se cumple esta condición es porque llego al final del parrafo
 	word=(get_paragraph()[j]).substr(temp,i-temp);
 	list_of_words.push_back(word);
 	break;
       }
       else if(get_paragraph()[j][i]=='\n')                                    //Por si el otro parrafo comienza con un salto de lineas
-	continue;
+	temp++;
     }
     matrix_of_words.push_back(list_of_words);                                 //Guardamos el vector de palabras en el vector "matrix_of_words"
     list_of_words.clear();                                                    //Limpiamos cualquier palabra del parrafo anterior
@@ -106,13 +134,6 @@ vector< vector<string> > Prueba::get_word_matrix(){
   // p, Ej, matrix_of_word[1][] representa el segundo parrafo del texto, las columnas
   // representan las palabras que tiene cada parrafo.
 
-  
-    
-  for(int j=0;j<matrix_of_words.size();j++){
-      for(int i=0;i<matrix_of_words[j].size();i++)
-        cout << matrix_of_words[j][i] << endl;
-      cout << "\n-----------------------\n";
-  }
   return matrix_of_words;
 }
 
