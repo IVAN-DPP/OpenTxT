@@ -5,7 +5,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <cctype>
-#include "palabras.h"
+
 using namespace std;
 
 class Prueba{
@@ -16,10 +16,9 @@ public:
   Prueba(string);
 
   void set_text(string);
-  //void set_word(string);
+  void set_text_name(string);
   void get_text();
   vector<string> get_paragraph();
-  vector< vector<string> > get_all_word_matrix();
   vector< vector<string> > get_word_matrix(vector< vector<int> > &);
   vector< vector<int> > get_frequency_matrix();
   void load_text();
@@ -28,6 +27,7 @@ public:
 Prueba::Prueba(){}
 Prueba::Prueba(string Text_name){text_name=Text_name;}
 
+void Prueba::set_text_name(string Text_name){text_name=Text_name;}
 void Prueba::load_text(){
 
   string var_temp; //Temporary variable
