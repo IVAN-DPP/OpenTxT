@@ -21,4 +21,6 @@ Falta por arreglar
 	4.2)Seleccionar la palabra y guardarla.
 	4.3)Realizar la comparación entre palabras.
 	4.4)Contar.
+**/----------- prueba.cpp -----------/**
 
+Esta tiene una ventaja, y es que no existe el problema de las tildes, ademas devuelve directamente las matrices de palabras por cada parrafo y la frecuencia de estas
