@@ -11,16 +11,20 @@ using namespace std;
 class Prueba{
 private:
   string text,text_name;
+  vector< vector<int> > frequency_matrix0;
+  vector< vector<int> > frequency_matrix1;
 public:
   Prueba();
   Prueba(string);
-
+  
   void set_text(string);
   void set_text_name(string);
   void get_text();
   vector<string> get_paragraph();
-  vector< vector<string> > get_word_matrix(vector< vector<int> > &);
-  vector< vector<int> > get_frequency_matrix();
+  vector< vector<string> > get_word_matrix0();
+  vector< vector<int> > get_frequency_matrix0();
+  vector<string> get_word_vector1();
+  vector< vector<int> > get_frequency_matrix1();
   void load_text();
 };
 
@@ -69,13 +73,16 @@ vector<string> Prueba::get_paragraph(){
 }
 
 
-vector< vector<string> > Prueba::get_word_matrix(vector< vector<int> > &frequency_matrix){
+vector< vector<string> > Prueba::get_word_matrix0(){
   vector<string> word_vector;
   vector< vector<string> > word_matrix;
   vector<string> final_word_vector;
   vector< vector<string> > final_word_matrix;
   string word;
-  int temp=0;                                                                 //Indica el indice con el cual empieza una palabra 
+  int temp=0;                                                                 //Indica el indice con el cual empieza una palabra
+
+  //Esta primera sección genera una matriz con todas las palabras
+  
   for(int j=0;j<get_paragraph().size();j++){                                  //Este primer bucle retorna la matriz de vectores fila
     for(int i=0;i<(get_paragraph()[j]).size();i++){                             //Este segundo bucle retorna un vector fila por cada parrafo
 
@@ -136,6 +143,18 @@ vector< vector<string> > Prueba::get_word_matrix(vector< vector<int> > &frequenc
     temp=0;                                                                   //Inicializamos de cero de nuevo el indice con el que empieza la palabra
   }
 
+
+  //Se realiza todo un recorrido en la matriz de palabras para cambiar las primeras letras a minusculas
+  
+  for(int i=0;i<word_matrix.size();i++)
+    for(int j=0;j<word_matrix[i].size();j++){
+      char Cstring;                                                          
+      Cstring=tolower(word_matrix[i][j][0]);                                  //Convertimos la primeta letra de word_matrix[i][j] en minuscula
+      string String;                                                          
+      String=Cstring;                                                         //Asignamos a String la letra en minuscula Cstring
+      word_matrix[i][j].replace(0,1,String);                                  //Remplazamos la primera letra en la letra original pero en minuscula
+    }
+  
   // La matriz se puede ver como si sus filas representaran los parrafos en el texto,
   // p, Ej, word_matrix[1][] representa el segundo parrafo del texto, las columnas
   // representan las palabras que tiene cada parrafo.
@@ -158,7 +177,7 @@ vector< vector<string> > Prueba::get_word_matrix(vector< vector<int> > &frequenc
   }
 
   /*----------------------  Función de Frecuencia ----------------*/
-  // Anteriormente se pasa como parametro por referencia la matriz frequency_matrix,
+  // Anteriormente se pasa como parametro por referencia la matriz frequency_matrix0,
   // debido a que necesitamos la matriz que contiene todas las palabras (word_matrix)
   // para realizar la comparación con las palabras de (final_word_matrix).
 
@@ -172,14 +191,73 @@ vector< vector<string> > Prueba::get_word_matrix(vector< vector<int> > &frequenc
       }
       frequency_vector.push_back(temp);                          //Guardamos las veces que se repite cada palabra en el vector frequency_vector
     }
-    frequency_matrix.push_back(frequency_vector);                //Guardamos el vector en la matriz frequency_matrix
+    frequency_matrix0.push_back(frequency_vector);                //Guardamos el vector en la matriz frequency_matrix0
     frequency_vector.clear();                                    //Limpiamos el vector para poder iniciar otra vez el bucle
   }
 
-  
   return final_word_matrix;
 }
 
+vector< vector<int> > Prueba::get_frequency_matrix0(){return frequency_matrix0;}
+
+vector<string> Prueba::get_word_vector1(){
+
+  vector<string> word_vector;
+  vector<string> final_word_vector;
+  vector< vector<string> > word_matrix = get_word_matrix0();
+  int count=0;
+  
+  for(int i=0;i<word_matrix.size();i++)
+    for(int j=0;j<word_matrix[i].size();j++)                         //Este bucle es para poner todas las palabras en una lista
+      word_vector.push_back(word_matrix[i][j]);
+
+  // La idea de esta busqueda es que se haga el bucle respecto a la lista que tiene
+  //   las palabras guardadas p. ej, se deja constante la palabra word_vector[3] y se
+  //   realiza el bucle sobre las palabras guardadas en final_word_vector como se puede
+  //   observar en este segundo bucle
+  
+  final_word_vector.push_back(word_vector[0]);
+
+  for(int i=0;i<word_vector.size();i++){                             //Este primer bucle corre sobre el vector word_vector
+    count=0;                                                         //Esta variable contara las veces que no se repita la cadena
+    for(int j=0;j<final_word_vector.size();j++)                      //Este segundo bucle correra sobre el nuevo vector
+      if(final_word_vector[j]!=word_vector[i]){                      //Si se cumple esta condición es porque la palabra es difernte a las guardadas en final_word_vector                            
+	count++;
+      }
+    if(count==final_word_vector.size())                              //Si se da esta condición es porque no se repite la palabra de word_vector con ninguna de las palabras de final_word_vector
+      final_word_vector.push_back(word_vector[i]);                   //Se guarda la palabra
+  }
+  
+      
+  return final_word_vector;
+}
+
+vector< vector<int> > Prueba::get_frequency_matrix1(){
+
+  vector< vector<int> > frequency_matrix1;
+  vector<int> frequency_vector1;
+  vector<string> word_vector = get_word_vector1();
+  vector< vector<string> > word_matrix = get_word_matrix0();
+  int count=0;
+  for(int k=0;k<word_matrix.size();k++){                               //Primer bucle corre sobre las filas de la matriz word_matrix
+    for(int j=0;j<word_vector.size();j++){                             //Segundo bucle corre sobre los elementos del vector word_vector
+      for(int i=0;i<word_matrix[k].size();i++){                        //Tercer bucle corre sobre las columnas de word_matrix
+	if(word_matrix[k][i]==word_vector[j])                          //Si esta condición se cumple es porque la palabra en la lista word_vector esta en el primer parrafo del texto
+	  frequency_vector1.push_back(frequency_matrix0[k][i]);        //De esta manera se guarda el valor de la frecuencia de esta palabra en este vector
+	else
+	  count++;                                                     //Si la palabra no es igual entonces se realiza un conteo
+      }
+      if(count==word_matrix[k].size())                                 //Si esta condición se cumple es porque el parrafo no contiene la palabra que se busca en la lista
+	frequency_vector1.push_back(0);                                //Por lo tanto se coloca como frecuencia cero
+      count=0;
+    }
+    frequency_matrix1.push_back(frequency_vector1);
+    frequency_vector1.clear();
+  }
+  for(int i=0;i<frequency_matrix1[1].size();i++)
+    cout << frequency_matrix1[1][i] <<"  " << word_vector[i]<<endl;
+  return frequency_matrix1;
+}
 
 
  
@@ -188,15 +266,19 @@ int main(){
   Prueba a("prb.txt");
   a.load_text();
   //a.get_text();
-  vector<vector<int>> frequency_matrix;
-  vector<vector<string>> final_word_matrix = a.get_word_matrix(frequency_matrix);
+  
+  vector<vector<string>> final_word_matrix = a.get_word_matrix0();
+  vector<vector<int>> frequency_matrix0 = a.get_frequency_matrix0();
   cout << a.get_paragraph()[0] << endl;
   cout << a.get_paragraph()[1] << endl;
-  for(int i=0;i<frequency_matrix.size();i++){
-    for(int j=0;j<frequency_matrix[i].size();j++)
-      cout << frequency_matrix[i][j] << "  " << final_word_matrix[i][j]<<endl;
+
+  for(int i=0;i<frequency_matrix0.size();i++){
+    for(int j=0;j<frequency_matrix0[i].size();j++)
+      cout << frequency_matrix0[i][j] << "  " << final_word_matrix[i][j]<<endl;
     cout << "\n---------------------------\n";
     }
+  a.get_word_vector1();
+  a.get_frequency_matrix1();
   // for(int i=0;i<(a.get_word_list()).size();i++)
   //   cout << a.get_word_list()[i] <<endl;
   // string text_w="hoéa";
@@ -207,6 +289,6 @@ int main(){
   // }
   // text_w=textC;
   // cout << textC << endl;
-  //a.get_frequency_matrix();
+  //a.get_frequency_matrix0();
   return 0;
 }
