@@ -8,14 +8,16 @@
 
 using namespace std;
 
-class Prueba{
+namespace OpenTxT{
+  
+class Datos{
 private:
   string text,text_name;
   vector< vector<int> > frequency_matrix0;
   vector< vector<int> > frequency_matrix1;
 public:
-  Prueba();
-  Prueba(string);
+  Datos();
+  Datos(string);
   
   void set_text(string);
   void set_text_name(string);
@@ -28,11 +30,11 @@ public:
   void load_text();
 };
 
-Prueba::Prueba(){}
-Prueba::Prueba(string Text_name){text_name=Text_name;}
+Datos::Datos(){}
+Datos::Datos(string Text_name){text_name=Text_name;}
 
-void Prueba::set_text_name(string Text_name){text_name=Text_name;}
-void Prueba::load_text(){
+void Datos::set_text_name(string Text_name){text_name=Text_name;}
+void Datos::load_text(){
 
   string var_temp; //Temporary variable
 
@@ -50,11 +52,11 @@ void Prueba::load_text(){
   }
 }
 
-void Prueba::get_text(){cout << text << endl;}
+void Datos::get_text(){cout << text << endl;}
 
 
 
-vector<string> Prueba::get_paragraph(){
+vector<string> Datos::get_paragraph(){
   vector<string> list_of_paragraphs;
   string paragraph;
   int temp=0;                               //Indice con el que inicia un parrafo
@@ -73,7 +75,7 @@ vector<string> Prueba::get_paragraph(){
 }
 
 
-vector< vector<string> > Prueba::get_word_matrix0(){
+vector< vector<string> > Datos::get_word_matrix0(){
   vector<string> word_vector;
   vector< vector<string> > word_matrix;
   vector<string> final_word_vector;
@@ -198,9 +200,9 @@ vector< vector<string> > Prueba::get_word_matrix0(){
   return final_word_matrix;
 }
 
-vector< vector<int> > Prueba::get_frequency_matrix0(){return frequency_matrix0;}
+vector< vector<int> > Datos::get_frequency_matrix0(){return frequency_matrix0;}
 
-vector<string> Prueba::get_word_vector1(){
+vector<string> Datos::get_word_vector1(){
 
   vector<string> word_vector;
   vector<string> final_word_vector;
@@ -232,7 +234,7 @@ vector<string> Prueba::get_word_vector1(){
   return final_word_vector;
 }
 
-vector< vector<int> > Prueba::get_frequency_matrix1(){
+vector< vector<int> > Datos::get_frequency_matrix1(){
 
   vector< vector<int> > frequency_matrix1;
   vector<int> frequency_vector1;
@@ -254,41 +256,10 @@ vector< vector<int> > Prueba::get_frequency_matrix1(){
     frequency_matrix1.push_back(frequency_vector1);
     frequency_vector1.clear();
   }
-  for(int i=0;i<frequency_matrix1[1].size();i++)
-    cout << frequency_matrix1[1][i] <<"  " << word_vector[i]<<endl;
+  
   return frequency_matrix1;
 }
 
-
- 
-int main(){
-
-  Prueba a("prb.txt");
-  a.load_text();
-  //a.get_text();
-  
-  vector<vector<string>> final_word_matrix = a.get_word_matrix0();
-  vector<vector<int>> frequency_matrix0 = a.get_frequency_matrix0();
-  cout << a.get_paragraph()[0] << endl;
-  cout << a.get_paragraph()[1] << endl;
-
-  for(int i=0;i<frequency_matrix0.size();i++){
-    for(int j=0;j<frequency_matrix0[i].size();j++)
-      cout << frequency_matrix0[i][j] << "  " << final_word_matrix[i][j]<<endl;
-    cout << "\n---------------------------\n";
-    }
-  a.get_word_vector1();
-  a.get_frequency_matrix1();
-  // for(int i=0;i<(a.get_word_list()).size();i++)
-  //   cout << a.get_word_list()[i] <<endl;
-  // string text_w="hoéa";
-  // char textC[text_w.size()];
-  // for(int i=0;i<text_w.size();i++){
-  //   textC[i]=tolower(text_w[i]);
-  //   cout << textC[i]<<endl;
-  // }
-  // text_w=textC;
-  // cout << textC << endl;
-  //a.get_frequency_matrix0();
-  return 0;
 }
+ 
+ 
