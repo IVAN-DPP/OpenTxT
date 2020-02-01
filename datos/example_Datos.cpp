@@ -21,9 +21,8 @@ int main(){
 
 
   //Paso 1: Cargar el texto
-  Datos a("prb.txt"); //Nombre del texto
+  Datos a("textos.txt"); //Nombre del texto
   a.load_text();       //Carga el texto
-  
   //Paso 2:
   //Se debe generar estas dos funciones base para la creación de las matrices de palabras por parrafo y sus frecuencias
   a.get_word_matrix0();     
@@ -35,6 +34,6 @@ int main(){
   // las frecuencias de estas palabras por parrafo.
   a.get_word_vector1();
   a.get_frequency_matrix1();
-  
+  a.save_file1();
   return 0;
 }

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <cctype>
-
+#include <iomanip>
 using namespace std;
 
 namespace OpenTxT{
@@ -20,13 +20,14 @@ public:
   Datos(string);
   
   void set_text(string);
-  void set_text_name(string);
+  void set_text_name(string);      
   void get_text();
   vector<string> get_paragraph();
   vector< vector<string> > get_word_matrix0();
   vector< vector<int> > get_frequency_matrix0();
   vector<string> get_word_vector1();
   vector< vector<int> > get_frequency_matrix1();
+  void save_file1();
   void load_text();
 };
 
@@ -92,7 +93,8 @@ vector< vector<string> > Datos::get_word_matrix0(){
 
       if(get_paragraph()[j][i]=='.' || get_paragraph()[j][i]==',' ||
 	 get_paragraph()[j][i]==')' || get_paragraph()[j][i]=='!' ||
-	 get_paragraph()[j][i]=='?'){                                           //Si una palabra termina con punto, coma, sign interrogración, etc.
+	 get_paragraph()[j][i]=='?' || get_paragraph()[j][i]==':' ||
+	 get_paragraph()[j][i]==';'){                                           //Si una palabra termina con punto, coma, sign interrogración, etc.
 	word=(get_paragraph()[j]).substr(temp,i-temp);                          //Guarda o asigna la palabra en word, empieza en temp y escoge (i-temp) elementos
 	temp=i+1;                                                               //Pone en temp el inicio de la siguiente palabra
 	word_vector.push_back(word);                                          //Guarda la palabra en el vector "word_vector"
@@ -260,6 +262,26 @@ vector< vector<int> > Datos::get_frequency_matrix1(){
   return frequency_matrix1;
 }
 
-}
+
+  void Datos::save_file1(){
+    fstream out_file;
+    out_file.open("datos1.txt",ios::out);
+    vector<string> word_vector1 = get_word_vector1();
+    vector< vector<int> > frequency_matrix1 = get_frequency_matrix1();
+
+
+    for(int i=0;i<word_vector1.size();i++)
+      out_file << word_vector1[i] << " ";
+    out_file << endl;
+    
+    for(int i=0;i<frequency_matrix1.size();i++){
+      for(int j=0;j<frequency_matrix1[i].size();j++)
+	out_file << frequency_matrix1[i][j] << " ";
+      out_file << endl;
+    }
+    
+  }
+
+} //Fin del namespace OpenTxT
  
  
