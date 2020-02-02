@@ -27,7 +27,7 @@ public:
   vector< vector<int> > get_frequency_matrix0();
   vector<string> get_word_vector1();
   vector< vector<int> > get_frequency_matrix1();
-  void save_file1();
+  void save_file1(string);
   void load_text();
 };
 
@@ -238,7 +238,7 @@ vector<string> Datos::get_word_vector1(){
 
 vector< vector<int> > Datos::get_frequency_matrix1(){
 
-  vector< vector<int> > frequency_matrix1;
+ 
   vector<int> frequency_vector1;
   vector<string> word_vector = get_word_vector1();
   vector< vector<string> > word_matrix = get_word_matrix0();
@@ -263,23 +263,26 @@ vector< vector<int> > Datos::get_frequency_matrix1(){
 }
 
 
-  void Datos::save_file1(){
+  void Datos::save_file1(string name_file1){
     fstream out_file;
-    out_file.open("datos1.txt",ios::out);
+    out_file.open(name_file1,ios::out);
     vector<string> word_vector1 = get_word_vector1();
-    vector< vector<int> > frequency_matrix1 = get_frequency_matrix1();
 
+    if(frequency_matrix1.empty())
+      get_frequency_matrix1();
 
-    for(int i=0;i<word_vector1.size();i++)
+    for(int i=0;i<word_vector1.size();i++)            //Guardamos en el archivo de salida las palabras separadas por espacio, por ejemplo, si tu estas todo parrafo ..
       out_file << word_vector1[i] << " ";
     out_file << endl;
+
     
-    for(int i=0;i<frequency_matrix1.size();i++){
+    for(int i=0;i<frequency_matrix1.size();i++){     //Guardamos los datos separados por espacio, de modo que paresera una tabla.
       for(int j=0;j<frequency_matrix1[i].size();j++)
 	out_file << frequency_matrix1[i][j] << " ";
       out_file << endl;
     }
-    
+
+    out_file.close();
   }
 
 } //Fin del namespace OpenTxT
