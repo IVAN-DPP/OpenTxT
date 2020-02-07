@@ -243,23 +243,29 @@ vector< vector<int> > Datos::get_frequency_matrix1(){
   vector<string> word_vector = get_word_vector1();
   vector< vector<string> > word_matrix = get_word_matrix0();
   int count=0;
-  for(int k=0;k<word_matrix.size();k++){                               //Primer bucle corre sobre las filas de la matriz word_matrix
-    for(int j=0;j<word_vector.size();j++){                             //Segundo bucle corre sobre los elementos del vector word_vector
-      for(int i=0;i<word_matrix[k].size();i++){                        //Tercer bucle corre sobre las columnas de word_matrix
-	if(word_matrix[k][i]==word_vector[j])                          //Si esta condición se cumple es porque la palabra en la lista word_vector esta en el primer parrafo del texto
-	  frequency_vector1.push_back(frequency_matrix0[k][i]);        //De esta manera se guarda el valor de la frecuencia de esta palabra en este vector
-	else
-	  count++;                                                     //Si la palabra no es igual entonces se realiza un conteo
+  vector< vector<int> > fauxiliar;
+
+  if(frequency_matrix1.empty()){
+    for(int k=0;k<word_matrix.size();k++){                               //Primer bucle corre sobre las filas de la matriz word_matrix
+      for(int j=0;j<word_vector.size();j++){                             //Segundo bucle corre sobre los elementos del vector word_vector
+	for(int i=0;i<word_matrix[k].size();i++){                        //Tercer bucle corre sobre las columnas de word_matrix
+	  if(word_matrix[k][i]==word_vector[j])                          //Si esta condición se cumple es porque la palabra en la lista word_vector esta en el primer parrafo del texto
+	    frequency_vector1.push_back(frequency_matrix0[k][i]);        //De esta manera se guarda el valor de la frecuencia de esta palabra en este vector
+	  else
+	    count++;                                                     //Si la palabra no es igual entonces se realiza un conteo
+	}
+	if(count==word_matrix[k].size())                                 //Si esta condición se cumple es porque el parrafo no contiene la palabra que se busca en la lista
+	  frequency_vector1.push_back(0);                                //Por lo tanto se coloca como frecuencia cero
+	count=0;
       }
-      if(count==word_matrix[k].size())                                 //Si esta condición se cumple es porque el parrafo no contiene la palabra que se busca en la lista
-	frequency_vector1.push_back(0);                                //Por lo tanto se coloca como frecuencia cero
-      count=0;
+      frequency_matrix1.push_back(frequency_vector1);
+      frequency_vector1.clear();
     }
-    frequency_matrix1.push_back(frequency_vector1);
-    frequency_vector1.clear();
+    fauxiliar=frequency_matrix1;
   }
-  
-  return frequency_matrix1;
+  else
+    fauxiliar=frequency_matrix1;
+  return fauxiliar;
 }
 
 
