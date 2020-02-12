@@ -22,7 +22,7 @@ int main(){
 
 
   //Paso 1: Cargar el texto
-  Datos a("textos.txt"); //Nombre del texto
+  Datos a("Primero1.txt"); //Nombre del texto
   a.load_text();       //Carga el texto
   // //Paso 2:
   // //Se debe generar estas dos funciones base para la creación de las matrices de palabras por parrafo y sus frecuencias
@@ -33,10 +33,7 @@ int main(){
   // //Se genera la tabla de contingencia de forma que cada fila representa un parrafo, y las columnas
   // // representan las palabras sin repetir en todo el texto, cada elemento de esta matriz representa
   // // las frecuencias de estas palabras por parrafo.
-  //a.get_names();
-  //a.get_text();
-  /*  for(int i=0;i<a.get_names().size();i++)
-    cout << a.get_names()[i] << endl;*/
-  a.save_file1("datos1.txt"); //Guardamos la tabla en un archivo llamado datos1.txt
+
+  a.save_file1("DatosP1.txt"); //Guardamos la tabla en un archivo llamado datos1.txt
   return 0;
 }

@@ -1,14 +1,14 @@
-Daniel: Textos informativos. Aquellos en los que se le da al lector una serie de contenidos o informaciones específicas junto con las herramientas conceptuales o contextuales para comprenderlos, es decir, se le explica algo concreto. Por ejemplo: un informe técnico, una página de enciclopedia.
+Informativos: Aquellos en los que se le da al lector una serie de contenidos o informaciones específicas junto con las herramientas conceptuales o contextuales para comprenderlos, es decir, se le explica algo concreto. Por ejemplo: un informe técnico, una página de enciclopedia.
 
-Fernando: Textos narrativos. Aquellos en los que se detalla una narración, sea real o imaginaria. Por ejemplo: un cuento, una novela, una crónica de viaje.
+Narrativos: Aquellos en los que se detalla una narración, sea real o imaginaria. Por ejemplo: un cuento, una novela, una crónica de viaje.
 
-Hugo: Textos descriptivos. Aquellos en los que se brinda una cantidad de detalle respecto de un objeto o evento específico, aspirando a agotar sus propiedades en algún sentido. Por ejemplo: la ficha de una obra de arte en un museo, una propaganda de venta de un electrodoméstico.
+Descriptivos: Aquellos en los que se brinda una cantidad de detalle respecto de un objeto o evento específico, aspirando a agotar sus propiedades en algún sentido. Por ejemplo: la ficha de una obra de arte en un museo, una propaganda de venta de un electrodoméstico.
 
-Arnold: Textos argumentativos. Aquellos que buscan convencer al lector de alguna opinión, punto de vista o consideración, respecto a un tema cualquiera, ofreciéndole argumentos y razones. Por ejemplo: un artículo de opinión, una propaganda incentivando el ahorro energético, un discurso en un mitin político.
+Argumentativos: Aquellos que buscan convencer al lector de alguna opinión, punto de vista o consideración, respecto a un tema cualquiera, ofreciéndole argumentos y razones. Por ejemplo: un artículo de opinión, una propaganda incentivando el ahorro energético, un discurso en un mitin político.
 
-Julieta: Textos conmutativos. Aquellos que le imparten instrucciones precisas al lector, y que están escritos empleando verbos imperativos. Por ejemplo: una receta de cocina, una señal de tránsito, un letrero de no fumar.
+Conmutativos: Aquellos que le imparten instrucciones precisas al lector, y que están escritos empleando verbos imperativos. Por ejemplo: una receta de cocina, una señal de tránsito, un letrero de no fumar.
 
-Ivan: Textos poéticos o lúdicos. Aquellos cuyo sentido está en la contemplación de la belleza o el ingenio con que fueron escritos, es decir, apelando al sentido lúdico o estético del lector. Por ejemplo: un poema, una obra literaria, una adivinanza.
+Poéticosolúdicos: Aquellos cuyo sentido está en la contemplación de la belleza o el ingenio con que fueron escritos, es decir, apelando al sentido lúdico o estético del lector. Por ejemplo: un poema, una obra literaria, una adivinanza.
 
 
 

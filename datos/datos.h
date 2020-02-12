@@ -17,6 +17,7 @@ namespace OpenTxT{
     vector<string> names;
     vector< vector<int> > frequency_matrix0;
     vector< vector<int> > frequency_matrix1;
+    
   public:
     Datos();
     Datos(string);
@@ -91,42 +92,7 @@ namespace OpenTxT{
   
   void Datos::get_text(){cout << text << endl;}
 
-  /*
-  vector<string> Datos::get_names(){
-    vector<int> pos;
-    
-    
-    if(text[0]!='\n'){                              //Si se cumple esta condición es porque esta al inicio del texto
-      pos.push_back(0);                 
-      for(int j=0;true;j++){                        //Este bucle nos permite encontrar el final del nombre hasta llegar a un :
-	if(text[j]==':'){
-	  names.push_back(text.substr(0,j));        //Guardamos el nombre
-	  pos.push_back(j);                         //Guardamos la posición final de la palabra hasta el :
-	  break;
-	}
-      }
-    }
-
-    for(int i=1;i<text.size();i++){             //Realzamos toda la operación anterior pero sobre todo el texto
-      
-      if(text[i-1]=='\n' && text[i-2]=='\n'){   //Por si un parrafo esta separado con doble enter
-	pos.push_back(i);                       //Guardamos la posición inicial de la palabra
-	for(int j=i;true;j++){                  //El bucle empieza desde la posición de la primera palabra de cada parrafo
-	  if(text[j]==':'){
-	    names.push_back(text.substr(i,j-i));
-	    pos.push_back(j);
-	    break;
-	  }
-	  else if(j==text.size())             //Si se cumple este condicional es porque ya llego al final del texto
-	      break;
-	}
-      }
-    }
-    
-    for(int i=pos.size()-1;i>0;i-=2)          //Este bucle nos permite eliminar los nombres de los parrafos para luego realizar la respectiva tabla
-      text.erase(pos[i-1],pos[i]+2-pos[i-1]); 
-    return names;
-    }*/
+  
   
   vector<string> Datos::get_paragraph(){
     vector<string> list_of_paragraphs;
