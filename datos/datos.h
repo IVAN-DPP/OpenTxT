@@ -1,3 +1,8 @@
+/*************************
+
+autor: Ivan Dario Piernagorda Peña
+
+ ***********************/
 #include <iostream>
 #include <string>
 #include <vector>
