@@ -27,6 +27,23 @@ void TxTCtext::UppercaseA(){
   Ctext=CUpper;
 }
 
+
+void TxTCtext::PunctuationR(){
+
+  for(int i=0;i<Ctext.size();i++){
+    if(Ctext[i]=='.' || Ctext[i]==',' ||
+       Ctext[i]=='!' || Ctext[i]==')' ||
+       Ctext[i]=='?' || Ctext[i]=='(' ||
+       Ctext[i]=='\"' || Ctext[i]=='#' ||
+       Ctext[i]=='$' || Ctext[i]=='%' ||
+       Ctext[i]=='&' || Ctext[i]=='/' ||
+       Ctext[i]=='-' || Ctext[i]=='_')
+      Ctext.replace(i,1," ");
+    
+    else if(Ctext.substr(i,2)=="¡" || Ctext.substr(i,2)=="¿")      //The symbols ¡ and ¿ have two caracteres
+      Ctext.replace(i,2," ");
+  }
+}
 std::string TxTCtext::GetText(){
   return Ctext;
 }
