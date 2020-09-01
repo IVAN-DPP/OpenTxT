@@ -44,6 +44,35 @@ void TxTCtext::PunctuationR(){
       Ctext.replace(i,2," ");
   }
 }
+
+void TxTCtext::ExclamationR(){
+
+  for(int i=0;i<Ctext.size();i++){
+    if(Ctext.substr(i,2)=="á")
+      Ctext.replace(i,2,"a");
+    else if(Ctext.substr(i,2)=="é")
+      Ctext.replace(i,2,"e");
+    else if(Ctext.substr(i,2)=="í")
+      Ctext.replace(i,2,"i");
+    else if(Ctext.substr(i,2)=="ó")
+      Ctext.replace(i,2,"o");
+    else if(Ctext.substr(i,2)=="ú")
+      Ctext.replace(i,2,"ú");
+
+    else if(Ctext.substr(i,2)=="Á")
+      Ctext.replace(i,2,"A");
+    else if(Ctext.substr(i,2)=="É")
+      Ctext.replace(i,2,"E");
+    else if(Ctext.substr(i,2)=="Í")
+      Ctext.replace(i,2,"I");
+    else if(Ctext.substr(i,2)=="Ó")
+      Ctext.replace(i,2,"o");
+    else if(Ctext.substr(i,2)=="Ú")
+      Ctext.replace(i,2,"u");
+  }
+
+}
+
 std::string TxTCtext::GetText(){
   return Ctext;
 }
