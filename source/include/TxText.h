@@ -5,7 +5,7 @@
 #include<string>
 
 class TxText{
-private:
+protected:
   std::string TextsName = "Nada.txt";
   std::string Text;
 public:
@@ -17,3 +17,4 @@ public:
 };
 
 #endif
+

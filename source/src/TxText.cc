@@ -30,6 +30,7 @@ void TxText::LoadText(){
     }
     getline(input_file,Text,';');
   }
+
 }
 
 string TxText::GetText(){
