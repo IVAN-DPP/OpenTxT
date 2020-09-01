@@ -29,5 +29,7 @@ int main(){
   cout << CTex->GetText() << endl;
   CTex->UppercaseA();
   cout << CTex->GetText() << endl;
+  CTex->PunctuationR();
+  cout << CTex->GetText() << endl;
   return 0;
 }
