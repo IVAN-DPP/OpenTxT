@@ -1,6 +1,6 @@
-./source/*\~
-./source/include/*.h\~
-./source/src/*.cc\~
-./source/prueba
-./source/obj/*
-./source/pp.txt
+source/*\~
+source/include/*.h\~
+source/src/*.cc\~
+source/pruebas
+source/obj/*
+source/pp.txt
