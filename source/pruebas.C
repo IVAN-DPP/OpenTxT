@@ -24,12 +24,14 @@ int main(){
 
   TxTCtext *CTex;
   CTex = new TxTCtext(*tex);
-  cout << CTex->GetText() << endl;
+  cout <<"1: " <<CTex->GetText() << endl;
   CTex->LowercaseA();
-  cout << CTex->GetText() << endl;
+  cout << "2: " <<CTex->GetText() << endl;
   CTex->UppercaseA();
-  cout << CTex->GetText() << endl;
+  cout << "3: " <<CTex->GetText() << endl;
   CTex->PunctuationR();
-  cout << CTex->GetText() << endl;
+  cout << "4: " <<CTex->GetText() << endl;
+  CTex->ExclamationR();
+  cout << "5: " <<CTex->GetText() << endl;
   return 0;
 }
