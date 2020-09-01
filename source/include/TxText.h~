@@ -1,0 +1,17 @@
+
+#ifndef TXTEXT
+#define TXTEXT
+
+class TxText{
+private:
+  string TextsName;
+  string Text;
+protected:
+  TxText(string = "Hello");
+  void SetTextName(string);
+  string GetTextName();
+  void LoadText();
+  string GetText();
+};
+
+#endif

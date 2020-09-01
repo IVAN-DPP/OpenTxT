@@ -1,0 +1,16 @@
+INCDIR=include
+SRCDIR=src
+OBJDIR=obj
+CXX=g++
+
+pruebas:	pruebas.o TxText.o
+		$(CXX) -o pruebas $(OBJDIR)/TxText.o
+
+pruebas.o:	pruebas.C
+		$(CXX) -c -o $(OBJDIR)/pruebas.o pruebas.C
+
+TxText.o:	$(INCDIR)/TxText.h $(SRCDIR)/TxText.cc
+		$(CXX) -c -o $(OBJDIR)/TxText.o $(SRCDIR)/TxText.cc
+
+clean:
+	rm -rd $(OBJDIR)/* pruebas
