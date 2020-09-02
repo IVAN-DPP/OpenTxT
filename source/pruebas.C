@@ -4,6 +4,24 @@
 #include "include/TxTypes.h"
 #include<string>
 #include<iostream>
+#include<chrono>
+
+struct Timer{
+
+  std::chrono::system_clock::time_point start;
+  Timer(){
+    start = std::chrono::system_clock::now();
+  }
+  ~Timer(){
+    auto end =std::chrono::system_clock::now();
+    
+    std::chrono::duration<float,std::milli> duration = end - start;
+    
+    std::cout << duration.count() << " ms "<<std::endl;
+    
+  }
+  
+};
 
 using namespace std;
 int main(){
@@ -40,6 +58,7 @@ int main(){
   //--------------------------------------//
 
   //--------------------------------------//
+  Timer Time;
   TxTypes *t = new TxTypes(*CTex);
   //--------------------------------------//
   return 0;
