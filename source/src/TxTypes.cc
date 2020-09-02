@@ -17,11 +17,20 @@ TxTypes::TxTypes(TxTCtext Text){
       break;
     }
 
+    if(i>0 && Ctext[i]=='\n' && Ctext[i-1]!=' ' && Ctext[i-1]!='\n'){
+      Pvector.push_back(Ctext.substr(start,i-start));
+      start=i+1;
+      continue;
+    }
     if(Ctext[i]=='\n'){                                   //If the text have \n
       start=i+1;
       continue;
     }
-
+    if(Ctext[i-1]=='\n' && Ctext[i]==' '){
+      start=i+1;
+      continue;
+    }
+    
     if(i==0 && Ctext[i]==' ') {                           //If the text begin with a space
       start=i+1;
       continue;
@@ -38,12 +47,16 @@ TxTypes::TxTypes(TxTCtext Text){
     }
     
   }
+
+  //  for(int i=0;i<Pvector.size();i++)
+  //  std::cout << Pvector[i] << std::endl;
+    
   
 }
 
 TxTypes::TxTypes(std::string Text){
   Ctext=Text;
-
+  
   int start=0;
   
   for(int i=0;i<Ctext.size();i++){
@@ -52,12 +65,21 @@ TxTypes::TxTypes(std::string Text){
       Pvector.push_back(Ctext.substr(start,i-start));
       break;
     }
-
+    
+    if(i>0 && Ctext[i]=='\n' && Ctext[i-1]!=' ' && Ctext[i-1]!='\n'){
+      Pvector.push_back(Ctext.substr(start,i-start));
+      start=i+1;
+      continue;
+    }
     if(Ctext[i]=='\n'){                                   //If the text have \n
       start=i+1;
       continue;
     }
-
+    if(Ctext[i-1]=='\n' && Ctext[i]==' '){
+      start=i+1;
+      continue;
+    }
+    
     if(i==0 && Ctext[i]==' ') {                           //If the text begin with a space
       start=i+1;
       continue;
@@ -67,12 +89,12 @@ TxTypes::TxTypes(std::string Text){
       start=i+1;
       continue;
     }
-
+    
     if(Ctext[i]==' '){
       Pvector.push_back(Ctext.substr(start,i-start));
       start=i+1;
     }
     
   }
-  
+    
 }
