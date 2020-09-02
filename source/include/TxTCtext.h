@@ -9,6 +9,7 @@ class TxTCtext{
   std::string Ctext; 
  public:
   TxTCtext(TxText);
+  TxTCtext(std::string);
   void LowercaseA();        // Lowercase All
   void UppercaseA();        // Uppercase All
   void PunctuationR();      // Punctuation remove

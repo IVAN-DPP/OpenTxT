@@ -11,6 +11,10 @@ TxTCtext::TxTCtext(TxText Text){
   Ctext=Text.GetText();
 }
 
+TxTCtext::TxTCtext(std::string Text){
+  Ctext=Text;
+}
+
 void TxTCtext::LowercaseA(){
   std::string CLower;
   for(int i=0;i<Ctext.size();i++)
