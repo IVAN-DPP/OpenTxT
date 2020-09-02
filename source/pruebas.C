@@ -1,6 +1,7 @@
 
 #include "include/TxText.h"
 #include "include/TxTCtext.h"
+#include "include/TxTypes.h"
 #include<string>
 #include<iostream>
 
@@ -20,7 +21,7 @@ int main(){
 
   //----------------------------//
 
-  //-----------------------------//
+  // The class TxTCext work fine
 
   TxTCtext *CTex;
   CTex = new TxTCtext(*tex);
@@ -36,5 +37,10 @@ int main(){
   CTex->UppercaseA();
   cout << "6: " <<CTex->GetText() << endl;
 
+  //--------------------------------------//
+
+  //--------------------------------------//
+  TxTypes *t = new TxTypes(*CTex);
+  //--------------------------------------//
   return 0;
 }

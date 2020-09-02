@@ -28,7 +28,7 @@ void TxText::LoadText(){
       cout << "We can't load the file " << TextsName <<"\n";
       exit(0);    
     }
-    getline(input_file,Text,';');
+    getline(input_file,Text,'\0');
   }
 
 }
