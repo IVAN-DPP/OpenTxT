@@ -33,5 +33,8 @@ int main(){
   cout << "4: " <<CTex->GetText() << endl;
   CTex->ExclamationR();
   cout << "5: " <<CTex->GetText() << endl;
+  CTex->UppercaseA();
+  cout << "6: " <<CTex->GetText() << endl;
+
   return 0;
 }
