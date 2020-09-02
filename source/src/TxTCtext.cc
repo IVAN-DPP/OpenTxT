@@ -9,10 +9,24 @@
 
 TxTCtext::TxTCtext(TxText Text){
   Ctext=Text.GetText();
+  for(int i=Ctext.size();true;i--){
+   
+    if(Ctext[i-1]!='\n' && Ctext[i-1]!=' ') break;
+    Ctext.pop_back();
+  }
+  Ctext.pop_back();
+  Ctext.push_back('\t');
 }
 
 TxTCtext::TxTCtext(std::string Text){
   Ctext=Text;
+  for(int i=Ctext.size();true;i--){
+   
+    if(Ctext[i-1]!='\n' && Ctext[i-1]!=' ') break;
+    Ctext.pop_back();
+  }
+  Ctext.pop_back();
+  Ctext.push_back('\t');
 }
 
 void TxTCtext::LowercaseA(){
@@ -41,10 +55,12 @@ void TxTCtext::PunctuationR(){
        Ctext[i]=='\"' || Ctext[i]=='#' ||
        Ctext[i]=='$' || Ctext[i]=='%' ||
        Ctext[i]=='&' || Ctext[i]=='/' ||
-       Ctext[i]=='-' || Ctext[i]=='_')
+       Ctext[i]=='-' || Ctext[i]=='_' ||
+       Ctext[i]==';')
       Ctext.replace(i,1," ");
     
-    else if(Ctext.substr(i,2)=="¡" || Ctext.substr(i,2)=="¿")      //The symbols ¡ and ¿ have two caracteres
+    else if(Ctext.substr(i,2)=="¡" || Ctext.substr(i,2)=="¿" ||
+	    Ctext.substr(i,2)=="«" || Ctext.substr(i,2)=="»")      //The symbols ¡ and ¿ have two caracteres
       Ctext.replace(i,2," ");
   }
 }
@@ -61,7 +77,7 @@ void TxTCtext::ExclamationR(){
     else if(Ctext.substr(i,2)=="ó")
       Ctext.replace(i,2,"o");
     else if(Ctext.substr(i,2)=="ú")
-      Ctext.replace(i,2,"ú");
+      Ctext.replace(i,2,"u");
 
     else if(Ctext.substr(i,2)=="Á")
       Ctext.replace(i,2,"A");
@@ -70,9 +86,9 @@ void TxTCtext::ExclamationR(){
     else if(Ctext.substr(i,2)=="Í")
       Ctext.replace(i,2,"I");
     else if(Ctext.substr(i,2)=="Ó")
-      Ctext.replace(i,2,"o");
+      Ctext.replace(i,2,"O");
     else if(Ctext.substr(i,2)=="Ú")
-      Ctext.replace(i,2,"u");
+      Ctext.replace(i,2,"U");
   }
 
 }
