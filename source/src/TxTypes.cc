@@ -2,7 +2,7 @@
 #include "../include/TxTypes.h"
 #include "../include/TxTCtext.h"
 #include "../include/TxText.h"
-
+#include "../include/TxTPronouns.h"
 #include <iostream>
 
 TxTypes::TxTypes(TxTCtext Text){
@@ -98,3 +98,5 @@ TxTypes::TxTypes(std::string Text){
   }
     
 }
+
+

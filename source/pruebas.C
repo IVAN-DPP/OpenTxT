@@ -2,6 +2,7 @@
 #include "include/TxText.h"
 #include "include/TxTCtext.h"
 #include "include/TxTypes.h"
+#include "include/TxTPronouns.h"
 #include<string>
 #include<iostream>
 #include<chrono>
@@ -60,6 +61,13 @@ int main(){
   //--------------------------------------//
   Timer Time;
   TxTypes *t = new TxTypes(*CTex);
+
+  TxTPronouns P;
+  vector<string> vec=P.GetPronounsU();
+  for(int i=0;i<vec.size();i++)
+    cout << vec.at(i) << endl;
   //--------------------------------------//
+
+  
   return 0;
 }
