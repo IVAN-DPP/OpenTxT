@@ -8,8 +8,8 @@
 #include<vector>
 class TxTypes{
  private:
-  std::vector<std::string> Pvector;
   std::string Ctext;
+  std::vector<std::string> Pvector;
  public:
   TxTypes(TxTCtext);
   TxTypes(std::string);
