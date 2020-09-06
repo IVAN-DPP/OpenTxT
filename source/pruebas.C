@@ -3,6 +3,7 @@
 #include "include/TxTCtext.h"
 #include "include/TxTypes.h"
 #include "include/TxTPronouns.h"
+#include "include/TxTables.h"
 #include<string>
 #include<iostream>
 #include<chrono>
@@ -68,6 +69,8 @@ int main(){
     cout << vec.at(i) << endl;
   //--------------------------------------//
 
+  TxTables *Table =new TxTables(*t);
+  Table->GetTable("frequency");
   
   return 0;
 }
