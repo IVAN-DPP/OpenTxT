@@ -99,4 +99,6 @@ TxTypes::TxTypes(std::string Text){
     
 }
 
-
+std::vector<std::string> TxTypes::GetWordVector(){
+  return Pvector;
+}

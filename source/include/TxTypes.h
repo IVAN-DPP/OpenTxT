@@ -13,6 +13,7 @@ class TxTypes{
  public:
   TxTypes(TxTCtext);
   TxTypes(std::string);
+  std::vector<std::string> GetWordVector();
 };
 
 
