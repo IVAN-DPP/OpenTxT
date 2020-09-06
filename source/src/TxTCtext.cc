@@ -56,7 +56,7 @@ void TxTCtext::PunctuationR(){
        Ctext[i]=='$' || Ctext[i]=='%' ||
        Ctext[i]=='&' || Ctext[i]=='/' ||
        Ctext[i]=='-' || Ctext[i]=='_' ||
-       Ctext[i]==';')
+       Ctext[i]==';' || Ctext[i]=='\'')
       Ctext.replace(i,1," ");
     
     else if(Ctext.substr(i,2)=="¡" || Ctext.substr(i,2)=="¿" ||
