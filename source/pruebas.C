@@ -37,7 +37,7 @@ int main(){
   //tex->LoadText();
   tex->SetTextName("pp.txt");
   tex->LoadText();
-  cout << tex->GetText() << endl;
+  //cout << tex->GetText() << endl;
 
   //----------------------------//
 
@@ -45,32 +45,38 @@ int main(){
 
   TxTCtext *CTex;
   CTex = new TxTCtext(*tex);
-  cout <<"1: " <<CTex->GetText() << endl;
+  //cout <<"1: " <<CTex->GetText() << endl;
   CTex->LowercaseA();
-  cout << "2: " <<CTex->GetText() << endl;
+  //cout << "2: " <<CTex->GetText() << endl;
   CTex->UppercaseA();
-  cout << "3: " <<CTex->GetText() << endl;
+  //cout << "3: " <<CTex->GetText() << endl;
   CTex->PunctuationR();
-  cout << "4: " <<CTex->GetText() << endl;
+  //cout << "4: " <<CTex->GetText() << endl;
   CTex->ExclamationR();
-  cout << "5: " <<CTex->GetText() << endl;
+  //cout << "5: " <<CTex->GetText() << endl;
   CTex->UppercaseA();
-  cout << "6: " <<CTex->GetText() << endl;
+  //cout << "6: " <<CTex->GetText() << endl;
 
   //--------------------------------------//
-
+  
   //--------------------------------------//
   Timer Time;
   TxTypes *t = new TxTypes(*CTex);
-
-  TxTPronouns P;
-  vector<string> vec=P.GetPronounsU();
-  for(int i=0;i<vec.size();i++)
-    cout << vec.at(i) << endl;
+  
+  // TxTPronouns P;
+   vector<string> vec=t->GetWordVector();
+   //for(int i=0;i<vec.size();i++)
+   //  cout << vec.at(i) << endl;
+   //cout << vec[15] << endl;
+   //cout << vec[15].size() << endl;
   //--------------------------------------//
 
   TxTables *Table =new TxTables(*t);
   Table->GetTable("frequency");
+  Table->PronounsUR();
+  Table->PrepositionsUR();
+  Table->ConjunctionsUR();
+  
   
   return 0;
 }
