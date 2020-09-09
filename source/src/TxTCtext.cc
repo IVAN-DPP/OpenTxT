@@ -11,7 +11,7 @@ TxTCtext::TxTCtext(TxText Text){
   Ctext=Text.GetText();
   for(int i=Ctext.size();true;i--){
    
-    if(Ctext[i-1]!='\n' && Ctext[i-1]!=' ') break;
+    if(Ctext[i-2]!='\n' && Ctext[i-2]!=' ') break;
     Ctext.pop_back();
   }
   Ctext.pop_back();
@@ -22,7 +22,7 @@ TxTCtext::TxTCtext(std::string Text){
   Ctext=Text;
   for(int i=Ctext.size();true;i--){
    
-    if(Ctext[i-1]!='\n' && Ctext[i-1]!=' ') break;
+    if(Ctext[i-2]!='\n' && Ctext[i-2]!=' ') break;
     Ctext.pop_back();
   }
   Ctext.pop_back();
