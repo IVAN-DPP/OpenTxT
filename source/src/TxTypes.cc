@@ -11,7 +11,7 @@ TxTypes::TxTypes(TxTCtext Text){
   int start=0;
   
   for(int i=0;i<Ctext.size();i++){
-    
+    if(i==0 && Ctext[i]!=' ' && Ctext[i]!='\n') continue;
     if(Ctext[i]=='\t'){                                   //End of text
       Pvector.push_back(Ctext.substr(start,i-start));
       break;
@@ -60,7 +60,7 @@ TxTypes::TxTypes(std::string Text){
   int start=0;
   
   for(int i=0;i<Ctext.size();i++){
-    
+    if(i==0 && Ctext[i]!=' ' && Ctext[i]!='\n') continue;
     if(Ctext[i]=='\t'){                                   //End of text
       Pvector.push_back(Ctext.substr(start,i-start));
       break;
