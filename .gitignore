@@ -4,3 +4,5 @@ source/src/*.cc\~
 source/pruebas
 source/obj/*
 source/pp.txt
+source/DataFiles
+source/Files.txt

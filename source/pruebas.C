@@ -8,6 +8,9 @@
 #include<iostream>
 #include<chrono>
 
+std::vector<std::string> Files(std::string);
+void MultipleFiles(std::vector<std::string>);
+
 struct Timer{
 
   std::chrono::system_clock::time_point start;
@@ -77,6 +80,50 @@ int main(){
   Table->PrepositionsUR();
   Table->ConjunctionsUR();
   
-  
+  //vector<string> vv=Files("Files.txt");
+  MultipleFiles(Files("Files.txt"));
   return 0;
+}
+
+
+vector<string> Files(string file){
+  TxText *input = new TxText(file);
+  input->LoadText();
+  TxTCtext *Text = new TxTCtext(*input);
+  TxTypes *List = new TxTypes(*Text);
+  return List->GetWordVector();
+  //return List->GetWordVector();
+}
+
+void MultipleFiles(vector<string> ListF){
+  vector<string> List = ListF;
+  for(int i=0;i<List.size();i++){
+    
+    TxText *tex = new TxText(List[i]);;
+    tex->LoadText();
+    
+    TxTCtext *CTex = new TxTCtext(*tex);
+    CTex->LowercaseA();
+    
+    CTex->UppercaseA();
+    
+    CTex->PunctuationR();
+    
+    CTex->ExclamationR();
+    
+    CTex->UppercaseA();
+    
+    //--------------------------------------//
+    Timer Time;
+    TxTypes *t = new TxTypes(*CTex);
+    //--------------------------------------//
+    
+    TxTables *Table =new TxTables(*t);
+    Table->GetTable("frequency");
+    Table->PronounsUR();
+    Table->PrepositionsUR();
+    Table->ConjunctionsUR();
+    
+  }
+  
 }
