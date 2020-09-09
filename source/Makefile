@@ -6,8 +6,8 @@ CXX=g++
 pruebas:	pruebas.o TxText.o TxTCtext.o TxTypes.o TxTPronouns.o TxTPrepositions.o TxTConjunctions.o TxTables.o
 		$(CXX) -o pruebas $(OBJDIR)/pruebas.o $(OBJDIR)/TxText.o $(OBJDIR)/TxTCtext.o $(OBJDIR)/TxTypes.o $(OBJDIR)/TxTPronouns.o $(OBJDIR)/TxTConjunctions.o $(OBJDIR)/TxTPrepositions.o $(OBJDIR)/TxTables.o 
 
-pruebas.o:	pruebas.C
-		$(CXX) -c -o $(OBJDIR)/pruebas.o pruebas.C
+pruebas.o:	MultipleFiles.C
+		$(CXX) -c -o $(OBJDIR)/pruebas.o MultipleFiles.C
 
 TxText.o:	$(INCDIR)/TxText.h $(SRCDIR)/TxText.cc
 		$(CXX) -c -o $(OBJDIR)/TxText.o $(SRCDIR)/TxText.cc
