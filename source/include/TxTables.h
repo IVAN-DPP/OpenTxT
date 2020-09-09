@@ -12,10 +12,13 @@ class TxTables{
  public:
   TxTables(TxTypes);
   TxTables(std::vector<std::string>);
+  void GetTable(std::string);
+  std::map<std::string,int> GetMap();
   void PronounsUR();
   void PrepositionsUR();
   void ConjunctionsUR();
-  void GetTable(std::string);
+  //void Compare(TxTables);
+
 };
 
 
