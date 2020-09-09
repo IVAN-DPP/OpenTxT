@@ -90,3 +90,17 @@ void TxTables::ConjunctionsUR(){
   std::cout << "Conjunctions amount removed: " << temp << std::endl;
   
 }
+
+std::map<std::string,int> TxTables::GetMap(){
+  return Table;
+}
+
+// void TxTables::Compare(TxTables Table){
+//   std::map<std::string,int> Map=Table.GetMap();
+//   int Columns[];
+
+
+
+
+  
+// }
