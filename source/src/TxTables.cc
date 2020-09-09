@@ -2,6 +2,7 @@
 #include<string>
 #include<map>
 #include<iostream>
+#include<fstream>
 #include "../include/TxTables.h"
 #include "../include/TxTypes.h"
 #include"../include/TxTPronouns.h"
@@ -95,12 +96,40 @@ std::map<std::string,int> TxTables::GetMap(){
   return Table;
 }
 
-// void TxTables::Compare(TxTables Table){
-//   std::map<std::string,int> Map=Table.GetMap();
-//   int Columns[];
-
-
-
-
+void TxTables::Compare(std::map<std::string,std::vector<int>> &Map,std::map<std::string,int> map,int i,int ListSize){
+  std::vector<int> Columns(ListSize);
   
-// }
+  for(std::map<std::string,int>::iterator itr=map.begin();itr!=map.end();itr++){
+    if(i==0){
+      Columns[0]=itr->second;
+      Map.insert(std::pair<std::string,std::vector<int>>(itr->first,Columns));
+    }
+    else if(i>0){
+      std::map<std::string,std::vector<int>>::iterator itr2;
+      itr2=Map.find(itr->first);
+      if(itr2!=Map.end())
+	Map[itr2->first][i]=map[itr->first];
+      else{
+	Columns[i]=itr->second;
+	Map.insert(std::pair<std::string,std::vector<int>>(itr->first,Columns));
+      }
+    }
+    
+  }
+  MapPrintTable=Map;
+}
+
+void TxTables::PrintTable(std::string name_output,int ListSize){
+  
+  std::fstream output;
+  output.open(name_output,std::ios::out);
+  
+  for(std::map<std::string,std::vector<int>>::iterator itr=MapPrintTable.begin();itr!=MapPrintTable.end();itr++){
+    output << itr->first << "\t";
+    for(int col=0;col<MapPrintTable[itr->first].size();col++){
+      output << MapPrintTable[itr->first][col] << "\t";
+      if(col==MapPrintTable[itr->first].size()-1)
+	output << std::endl;
+	}
+  }
+}
